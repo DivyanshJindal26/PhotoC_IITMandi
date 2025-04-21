@@ -59,6 +59,11 @@ const Navbar = () => {
       const result = await signInWithPopup(auth, provider);
       const email = result.user.email;
 
+      if(email!='b24121@students.iitmandi.ac.in'){
+        await signOut(auth);
+        setError("Sorry login is disabled");
+        return;
+      }
       // Reject login if email is not from students.iitmandi.ac.in
       if (!email.endsWith("@students.iitmandi.ac.in")) {
         await signOut(auth);
